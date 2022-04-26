@@ -162,10 +162,17 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 10),
             _buildAnimatedSwitch(
-                child: _switchTransition(),
-                transitionBuilder: (child, animation) {
-                  return RotationTransition(turns: animation, child: child);
-                }),
+              child: _switchTransition(),
+              transitionBuilder: (child, animation) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: RotationTransition(
+                    turns: animation,
+                    child: child,
+                  ),
+                );
+              },
+            ),
             _buildButton(
               title: '自定义动画效果',
               onPress: () {
